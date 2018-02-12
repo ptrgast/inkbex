@@ -1,7 +1,7 @@
 {
-  "name": "inkex",
+  "name": "inkbex",
   "version": "0.1.0",
-  "description": "Inkscape batch export",
+  "description": "Batch export from SVG files using Inkscape",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,7 @@
     "png"
   ],
   "bin": {
-    "inkex": "src/main.js"
+    "inkbex": "src/main.js"
   },
   "author": "ptrgast",
   "license": "MIT",
