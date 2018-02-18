@@ -23,9 +23,11 @@ npm link
 Usage:
 
 ```
-inkbex <INPUT> [--dpi NUMBER]
+inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE]
 ```
 *INPUT* should be an SVG file or a glob pattern (e.g. *.svg)
+
+*EXPORT_TYPE* must be `png` or `pdf`. The default is `png`.
 
 Examples:
 ```
