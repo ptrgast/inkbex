@@ -1,3 +1,4 @@
+var commandExists = require('command-exists').sync;
 var shell = require("shelljs");
 var glob = require("glob");
 var helpers = require("./helpers");
@@ -16,9 +17,8 @@ var Inkscape = function () {
 
     this._init = function () {
         // Check that inkscape exists
-        var result = shell.exec("inkscape --version");
-        if (result.code!=0) {
-            throw new Error("Inkscape not found in your PATH!");
+        if (!commandExists("inkscape")) {
+            throw new Error("Inkscape not found! Please add it to your PATH.");
         }
 
         // Set default export type
