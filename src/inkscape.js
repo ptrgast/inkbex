@@ -1,6 +1,10 @@
 var shell = require("shelljs");
+var glob = require("glob");
+var helpers = require("./helpers");
 
 var Inkscape = function () {
+
+    var _this = this;
 
     this._dpi = null;
 
@@ -52,6 +56,17 @@ var Inkscape = function () {
         }
 
         shell.exec(command, {silent:true});
+    }
+
+    this.globExport = function(inputGlob) {
+        glob(inputGlob, function (er, files) {
+            // export files
+            for (var i = 0; i < files.length; i++) {
+                var inputFile = files[i];
+                var outputFile = helpers.removeFileExtension(inputFile);
+                _this.export(inputFile, outputFile);
+            }
+        });
     }
 
     this._init();

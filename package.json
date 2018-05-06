@@ -1,8 +1,8 @@
 {
   "name": "inkbex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Batch export from SVG files using Inkscape",
-  "main": "src/main.js",
+  "main": "src/inkscape.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,7 @@
     "url": "https://github.com/ptrgast/inkbex.git"
   },
   "bin": {
-    "inkbex": "src/main.js"
+    "inkbex": "src/cli.js"
   },
   "author": "ptrgast",
   "license": "MIT",
