@@ -23,11 +23,13 @@ npm link
 Usage:
 
 ```
-inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE]
+inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA]
 ```
 *INPUT* should be an SVG file or a glob pattern (e.g. *.svg)
 
 *EXPORT_TYPE* must be `png` or `pdf`. The default is `png`.
+
+*EXPORT_AREA* must be `page`, `drawing` or an object ID.
 
 Examples:
 ```
