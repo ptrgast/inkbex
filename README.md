@@ -29,7 +29,7 @@ inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA]
 
 *EXPORT_TYPE* must be `png` or `pdf`. The default is `png`.
 
-*EXPORT_AREA* must be `page`, `drawing` or an object ID.
+*EXPORT_AREA* must be `page`, `drawing` or an object ID. The default is `page`.
 
 Examples:
 ```
