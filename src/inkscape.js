@@ -1,7 +1,9 @@
 var commandExists = require('command-exists').sync;
-var shell = require("shelljs");
-var helpers = require("./other/helpers");
-var CommandBuilder= require("./other/command-builder");
+var shell = require('shelljs');
+var path = require('path');
+var makeDir = require('make-dir');
+var helpers = require('./other/helpers');
+var CommandBuilder= require('./other/command-builder');
 
 var Inkscape = function () {
 
@@ -70,8 +72,7 @@ var Inkscape = function () {
     this.export = function(input, output) {        
         // input
         this._commandBuilder.setOption('-f', input);
-        
-        
+                
         // prepare output name
         var outputName = "";
         if (output==null) {
@@ -80,16 +81,21 @@ var Inkscape = function () {
                 // add object id to output name
                 outputName += "-" + this._commandBuilder.getOption('-i', '');
             }
+            outputName += this._getExtension();
         } else {
-            outputName = output;
+            if (helpers.isDirectory(output)) {
+                outputName = helpers.concatPaths(output, helpers.removeFileExtension(input));
+                outputName += this._getExtension();
+                makeDir.sync(path.dirname(outputName)); // Create the path if needed
+            } else {
+                outputName = output;
+            }
         }
             
         // set export type and output file
         if (this._commandBuilder.hasOption('-e')) { // png
-            outputName += (output == null) ? ".png" : "";
             this._commandBuilder.setOption('-e', outputName);
         } else if (this._commandBuilder.hasOption('-A')) { // pdf
-            outputName += (output == null) ? ".pdf" : "";
             this._commandBuilder.setOption('-A', outputName);
         }
         
@@ -98,6 +104,15 @@ var Inkscape = function () {
         var command = this._commandBuilder.build();
         // console.log(command);
         shell.exec(command, {silent:true});
+    }
+
+    this._getExtension = function() {
+        if (this._commandBuilder.hasOption('-e')) { // png
+            return ".png";
+        } else if (this._commandBuilder.hasOption('-A')) { // pdf
+            return ".pdf";
+        }        
+        return "";
     }
 
     this._init();

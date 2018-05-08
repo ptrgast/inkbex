@@ -1,6 +1,6 @@
 {
   "name": "inkbex",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Batch export from SVG files using Inkscape",
   "main": "src/inkscape.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "dependencies": {
     "command-exists": "^1.2.6",
     "glob": "^7.1.2",
+    "make-dir": "^1.2.0",
     "minimist": "^1.2.0",
     "shelljs": "^0.8.1"
   }

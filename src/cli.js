@@ -11,6 +11,7 @@ var input = argv._.length>=3 ? argv._[2] : null;
 var dpi = argv.dpi ? argv.dpi : null;
 var exportType = argv.type ? argv.type : null;
 var exportArea = argv.area ? argv.area : null;
+var destination = argv.dest ? argv.dest : null;
 
 if (input==null) {
     throw new Error("No input file(s) specified!");
@@ -36,5 +37,5 @@ var inputFiles = glob.sync(input);
 for (var i = 0; i < inputFiles.length; i++) {
     var inputFile = inputFiles[i];
     var outputFile = helpers.removeFileExtension(inputFile);
-    inkscape.export(inputFile);
+    inkscape.export(inputFile, destination);
 }

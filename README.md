@@ -23,7 +23,7 @@ npm link
 Usage:
 
 ```
-inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA]
+inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA] [--dest OUTPUT]
 ```
 *INPUT* should be an SVG file or a glob pattern (e.g. *.svg)
 
@@ -31,10 +31,15 @@ inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA]
 
 *EXPORT_AREA* must be `page`, `drawing` or an object ID. The default is `page`.
 
+*OUTPUT* should be the export filename or a directory name.
+
 Examples:
 ```
 inkbex icon.svg
 ```
 ```
 inkbex *.svg --dpi 300
+```
+```
+inkbex *.svg --dpi 90 --dest ./exported/
 ```
