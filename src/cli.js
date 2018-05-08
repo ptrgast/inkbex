@@ -29,7 +29,7 @@ if (exportType != null) {
 
 // set export area
 if (exportArea != null) {
-    inkscape.setExportArea(exportArea);
+    exportArea = exportArea.split(",");
 }
         
 // export files
@@ -37,5 +37,5 @@ var inputFiles = glob.sync(input);
 for (var i = 0; i < inputFiles.length; i++) {
     var inputFile = inputFiles[i];
     var outputFile = helpers.removeFileExtension(inputFile);
-    inkscape.export(inputFile, destination);
+    inkscape.exportMany(inputFile, destination, exportArea);
 }

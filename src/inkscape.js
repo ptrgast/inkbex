@@ -77,14 +77,12 @@ var Inkscape = function () {
         var outputName = "";
         if (output==null) {
             outputName = helpers.removeFileExtension(input);
-            if (this._commandBuilder.hasOption('-i')) { 
-                // add object id to output name
-                outputName += "-" + this._commandBuilder.getOption('-i', '');
-            }
+            outputName += this._getExportedObjectId('-'); // add object id to output name (if it was provided)
             outputName += this._getExtension();
         } else {
             if (helpers.isDirectory(output)) {
                 outputName = helpers.concatPaths(output, helpers.removeFileExtension(input));
+                outputName += this._getExportedObjectId('-'); // add object id to output name (if it was provided)
                 outputName += this._getExtension();
                 makeDir.sync(path.dirname(outputName)); // Create the path if needed
             } else {
@@ -106,6 +104,13 @@ var Inkscape = function () {
         shell.exec(command, {silent:true});
     }
 
+    this.exportMany = function(input, output, areas) {
+        for (var i=0; i<areas.length; i++) {
+            this.setExportArea(areas[i]);
+            this.export(input, output);
+        }
+    }
+
     this._getExtension = function() {
         if (this._commandBuilder.hasOption('-e')) { // png
             return ".png";
@@ -113,6 +118,17 @@ var Inkscape = function () {
             return ".pdf";
         }        
         return "";
+    }
+
+    this._getExportedObjectId = function(prepend) {
+        if (this._commandBuilder.hasOption('-i')) {
+            var objId = this._commandBuilder.getOption('-i', '');
+            if (objId != "" && prepend!=null) {
+                objId = prepend + objId;
+            }
+            return objId;
+        }
+        return "";     
     }
 
     this._init();
