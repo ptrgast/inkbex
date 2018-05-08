@@ -29,7 +29,8 @@ inkbex <INPUT> [--dpi NUMBER] [--type EXPORT_TYPE] [--area EXPORT_AREA] [--dest 
 
 *EXPORT_TYPE* must be `png` or `pdf`. The default is `png`.
 
-*EXPORT_AREA* must be `page`, `drawing` or an object ID. The default is `page`.
+*EXPORT_AREA* must be `page`, `drawing` or an object ID. The default is `page`. 
+As of version 0.5.1 you can provide a **list** of comma separated IDs.
 
 *OUTPUT* should be the export filename or a directory name.
 
@@ -42,4 +43,7 @@ inkbex *.svg --dpi 300
 ```
 ```
 inkbex *.svg --dpi 90 --dest ./exported/
+```
+```
+inkbex collection.svg --area id1,id2,id3
 ```
